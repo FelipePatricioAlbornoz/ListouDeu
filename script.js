@@ -4,17 +4,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const listaTarefas = document.getElementById('lista-tarefas');
 
     botaoAdicionar.addEventListener('click', function() {
-        const textoTarefa = inputNovaTarefa.value.trim(); // Obtiene el texto y elimina espacios
+        const textoTarefa = inputNovaTarefa.value.trim();
 
-        if (textoTarefa !== "") { // Verifica que el campo no esté vacío
-            adicionarTarefa(textoTarefa); // Llama a la función para agregar la tarea
-            inputNovaTarefa.value = ""; // Limpia el campo de input
+        if (textoTarefa !== "") {
+            adicionarTarefa(textoTarefa);
+            inputNovaTarefa.value = "";
         }
     });
 
     function adicionarTarefa(texto) {
-        const tarefa = document.createElement('li'); // Crea un elemento LI
-        tarefa.textContent = texto; // Asigna el texto de la tarea al LI
-        listaTarefas.appendChild(tarefa); // Agrega el LI a la lista
+        const tarefa = document.createElement('li');
+        tarefa.textContent = texto;
+
+        const botaoEliminar = document.createElement('button');
+        botaoEliminar.textContent = 'Eliminar';
+        botaoEliminar.addEventListener('click', function(event) {
+            event.stopPropagation(); 
+            tarefa.remove();
+        });
+
+        tarefa.appendChild(botaoEliminar); 
+        listaTarefas.appendChild(tarefa);
     }
 });
