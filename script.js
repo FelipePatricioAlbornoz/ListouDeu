@@ -42,12 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function carregarTarefas() {
-        const tarefasGuardadas = localStorage.getItem('tarefas');
-        if (tarefasGuardadas) {
-            const tarefas = JSON.parse(tarefasGuardadas);
-            tarefas.forEach(tarefa => {
-                adicionarTarefa(tarefa.texto);
-            });
-        }
+    const tarefasGuardadas = localStorage.getItem('tarefas');
+    if (tarefasGuardadas) {
+        const tarefas = JSON.parse(tarefasGuardadas);
+        tarefas.forEach(tarefa => {
+            adicionarTarefa(tarefa.texto);
+            if (tarefa.completada) {
+                const listItem = listaTarefas.lastChild; // Obtiene el último elemento li añadido
+                listItem.classList.add('completed');
+            }
+        });
     }
+}
 });
+
