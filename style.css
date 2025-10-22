@@ -62,8 +62,22 @@ li {
     margin-bottom: 10px;
     border-radius: 4px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 10px;
+}
+
+li input[type="checkbox"] {
+    flex-shrink: 0;
+}
+
+li span {
+    flex-grow: 1;
+    text-align: left;
+}
+
+li.completed span {
+    text-decoration: line-through;
+    color: #888;
 }
 
 li button {

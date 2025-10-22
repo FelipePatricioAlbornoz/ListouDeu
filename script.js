@@ -27,6 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
             guardarTarefas();
         });
 
+        tarefa.addEventListener('click', function() {
+            this.classList.toggle('completed');
+
+            if (this.classList.contains('completed')) {
+                if (confirm("Deseja marcar a tarefa como concluída?")) {
+                    this.remove();
+                    guardarTarefas();
+                }
+            }
+        });
+
         tarefa.appendChild(botaoEliminar);
         listaTarefas.appendChild(tarefa);
     }
