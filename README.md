@@ -2,7 +2,7 @@
 
 > "Feitos com amor, café e zero banco de dados."
 
-Bem-vindo(a) ao **P.J.L.**, uma coleção simbólica dos projetos que todo dev júnior já fez (ou vai fazer) pelo menos uma vez na vida.  
+Bem-vindo(a) ao **P.J.N.D.S**, uma coleção simbólica dos projetos que todo dev júnior já fez (ou vai fazer) pelo menos uma vez na vida.  
 Aqui celebramos o entusiasmo, a curiosidade e aquele momento mágico em que um `console.log()` finalmente funciona.
 
 ---
