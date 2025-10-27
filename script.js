@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tarefas.forEach(tarefa => {
             adicionarTarefa(tarefa.texto);
             if (tarefa.completada) {
-                const listItem = listaTarefas.lastChild; // Obtiene el último elemento li añadido
+                const listItem = listaTarefas.lastChild;
                 listItem.classList.add('completed');
             }
         });
