@@ -1,6 +1,6 @@
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f0f2f5;
     color: #333;
     line-height: 1.6;
     display: flex;
@@ -11,17 +11,22 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 90%;
     max-width: 600px;
     background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
 }
 
 header {
     text-align: center;
     margin-bottom: 20px;
+}
+
+header h2 {
+    font-size: 2em;
+    color: #333;
 }
 
 .input-group {
@@ -31,23 +36,52 @@ header {
 
 #nova-tarefa {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 1em;
 }
 
 #adicionar {
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
-    background: #5cb85c;
+    background: #007bff;
     color: white;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-left: 10px;
+    transition: background-color 0.3s ease;
 }
 
 #adicionar:hover {
-    background: #4cae4c;
+    background: #0056b3;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    color: #333;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filters button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.filters button:hover:not(.active) {
+    background: #e2e6ea;
 }
 
 ul {
@@ -57,17 +91,24 @@ ul {
 }
 
 li {
-    background: #eee;
-    padding: 10px;
+    background: #f8f9fa;
+    padding: 15px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    transition: background-color 0.3s ease;
+}
+
+li.completed {
+    background: #e9ecef;
 }
 
 li input[type="checkbox"] {
     flex-shrink: 0;
+    width: 20px;
+    height: 20px;
 }
 
 li span {
@@ -82,19 +123,40 @@ li.completed span {
 
 li button {
     border: none;
-    background: #d9534f;
-    color: white;
+    background: transparent;
+    color: #333;
     cursor: pointer;
     padding: 5px 10px;
     border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-li button:hover {
+li .edit:hover {
+    color: #007bff;
+}
+
+li .delete:hover {
+    color: #d9534f;
+}
+
+#clear-completed {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    border: none;
+    background: #d9534f;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+#clear-completed:hover {
     background: #c9302c;
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
     color: #777;
 }
