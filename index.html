@@ -10,7 +10,6 @@
                                                                                 
     <div class="container">
         <header>
-            <img src="src/assets/hola.jpg" 
             <h2>Minha lista de tarefas </h2>
             <div class="input-group">
                 <input type="text" id="nova-tarefa" placeholder="Adicionar tarefa...">
@@ -21,6 +20,14 @@
 
     <ul id="lista-tarefas">
     </ul>
+
+    <template id="task-template">
+        <li>
+            <input type="checkbox">
+            <span></span>
+            <button>Eliminar</button>
+        </li>
+    </template>
 
     <footer>
         <p>&copy; 2666 ListouDeu - @FelipePatricioAlbornoz</p>

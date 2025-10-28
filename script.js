@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputNovaTarefa = document.getElementById('nova-tarefa');
     const botaoAdicionar = document.getElementById('adicionar');
     const listaTarefas = document.getElementById('lista-tarefas');
+    const taskTemplate = document.getElementById('task-template');
 
     carregarTarefas();
 
@@ -9,61 +10,59 @@ document.addEventListener('DOMContentLoaded', function() {
         const textoTarefa = inputNovaTarefa.value.trim();
 
         if (textoTarefa !== "") {
-            adicionarTarefa(textoTarefa);
+            adicionarTarefa(textoTarefa, false);
             inputNovaTarefa.value = "";
             guardarTarefas();
         }
     });
 
-    function adicionarTarefa(texto) {
-        const tarefa = document.createElement('li');
-        tarefa.textContent = texto;
+    function adicionarTarefa(texto, completada) {
+        const taskClone = taskTemplate.content.cloneNode(true);
+        const tarefa = taskClone.querySelector('li');
+        const span = taskClone.querySelector('span');
+        const checkbox = taskClone.querySelector('input[type="checkbox"]');
+        const botaoEliminar = taskClone.querySelector('button');
 
-        const botaoEliminar = document.createElement('button');
-        botaoEliminar.textContent = 'Eliminar';
-        botaoEliminar.addEventListener('click', function(event) {
-            event.stopPropagation();
+        span.textContent = texto;
+        checkbox.checked = completada;
+
+        if (completada) {
+            tarefa.classList.add('completed');
+        }
+
+        botaoEliminar.addEventListener('click', function() {
             tarefa.remove();
             guardarTarefas();
         });
 
-        tarefa.addEventListener('click', function() {
-            this.classList.toggle('completed');
-
-            if (this.classList.contains('completed')) {
-                if (confirm("Deseja marcar a tarefa como concluída?")) {
-                    this.remove();
-                    guardarTarefas();
-                }
-            }
+        checkbox.addEventListener('change', function() {
+            tarefa.classList.toggle('completed');
+            guardarTarefas();
         });
 
-        tarefa.appendChild(botaoEliminar);
-        listaTarefas.appendChild(tarefa);
+        listaTarefas.appendChild(taskClone);
     }
 
     function guardarTarefas() {
         const tarefas = [];
         document.querySelectorAll('#lista-tarefas li').forEach(tarefa => {
+            const span = tarefa.querySelector('span');
+            const checkbox = tarefa.querySelector('input[type="checkbox"]');
             tarefas.push({
-                texto: tarefa.textContent,
+                texto: span.textContent,
+                completada: checkbox.checked
             });
         });
         localStorage.setItem('tarefas', JSON.stringify(tarefas));
     }
 
     function carregarTarefas() {
-    const tarefasGuardadas = localStorage.getItem('tarefas');
-    if (tarefasGuardadas) {
-        const tarefas = JSON.parse(tarefasGuardadas);
-        tarefas.forEach(tarefa => {
-            adicionarTarefa(tarefa.texto);
-            if (tarefa.completada) {
-                const listItem = listaTarefas.lastChild;
-                listItem.classList.add('completed');
-            }
-        });
+        const tarefasGuardadas = localStorage.getItem('tarefas');
+        if (tarefasGuardadas) {
+            const tarefas = JSON.parse(tarefasGuardadas);
+            tarefas.forEach(tarefa => {
+                adicionarTarefa(tarefa.texto, tarefa.completada);
+            });
+        }
     }
-}
 });
-
