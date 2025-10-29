@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit Tests</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.20.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <div class="container">
+        <header>
+            <h2>Minha lista de tarefas </h2>
+            <div class="input-group">
+                <input type="text" id="nova-tarefa" placeholder="Adicionar tarefa...">
+                <button id="adicionar">Adicionar</button>
+            </div>
+        </header>
+
+        <div class="filters">
+            <button id="filter-all" class="active">Todas</button>
+            <button id="filter-active">Ativas</button>
+            <button id="filter-completed">Completadas</button>
+        </div>
+
+        <ul id="lista-tarefas">
+        </ul>
+
+        <button id="clear-completed">Limpar Completadas</button>
+    </div>
+
+    <template id="task-template">
+        <li>
+            <input type="checkbox">
+            <span></span>
+            <button class="edit">Editar</button>
+            <button class="delete">Eliminar</button>
+        </li>
+    </template>
+  </div>
+  <script src="https://code.jquery.com/qunit/qunit-2.20.0.js"></script>
+  <script src="script.js"></script>
+  <script src="test.js"></script>
+</body>
+</html>
